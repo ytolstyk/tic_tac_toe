@@ -1,0 +1,39 @@
+node depth:
+  distance from root to node
+node eight:
+  distance from node to farthest leaf
+
+N nodes, N-1 edges (always)
+only one path from node to node
+
+depth-first search (DFS)
+  start at the root, and keep going down a branch until the end, making a stack of all the child nodes down the way.
+
+def dfs(target)
+  return self if self.value == target
+  self.children.each do |child|
+    result = child.dfs(target)
+    return result if result
+  end
+  nil
+end
+
+breadth-first-search (BFS)
+  start at the root, and check all children before moving on to the next level of children making a queue of children along the way
+
+def bfs(target)
+  queue = [self]
+  until queue.empty?
+    current_node = queue.shift
+    return current_node if current_node == target
+    queue.concat(current_node.children)
+  end
+  nil
+end
+
+binary trees:
+  have at most two children
+
+binary search trees:
+  binary "sorted" trees - from each node, left will be smaller than parent, right will be larger than parent
+  ordered binary tree
